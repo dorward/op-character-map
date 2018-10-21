@@ -21,6 +21,7 @@
     "@3846masa/axios-cookiejar-support": "^0.4.2",
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
+    "commander": "^2.19.0",
     "fs-writefile-promise": "^3.0.0",
     "graphviz": "0.0.8",
     "source-map-support": "^0.5.9",

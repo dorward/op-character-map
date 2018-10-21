@@ -4,6 +4,7 @@ import graph from './lib/graph'
 import write from 'fs-writefile-promise'
 import getImages from './lib/getImages'
 import child_process from 'child_process'
+import commander from 'commander'
 
 async function init () {
 	const api = await obsidianportal(username, password)
@@ -12,7 +13,13 @@ async function init () {
 	const entities = characters.concat(pages.filter(page => !page.link.match(/main-page$/)))
 	await getImages(entities)
 	await run('./resize.sh')
-	const dot = graph(entities)
+	let options = 'all'
+	if (commander.connectionsOnly) {
+		options = 'connections'
+	} else if (commander.debtsOnly) {
+		options = 'debts'
+	}
+	const dot = graph(entities, options)
 	await write('data.dot', dot)
 	await run('dot -T png -O data.dot')
 }
@@ -23,5 +30,10 @@ async function run(command) {
 	})
 }
 
+commander
+	.version('0.0.1')
+	.option('-d, --debts-only', 'Only show debts')
+	.option('-c, --connections-only', 'Only show nodes that have a connection')
+	.parse(process.argv)
 
 init()
