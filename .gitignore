@@ -7,3 +7,7 @@ node_modules
 /graph.dot
 /data.dot.png
 /data.dot
+/images/*.jpg
+/images/*.jpeg
+/images/*.png
+*~
