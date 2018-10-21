@@ -4,14 +4,12 @@ import obsidianportal from './lib/obsidian-portal'
 async function init () {
 	const api = await obsidianportal(username, password)
 	api.setSite(site)
-	// const [characters, pages] = await Promise.all(api.getAllCharacters(), api.getAllWikiPages())
+	const [characters, pages] = await Promise.all([api.getAllCharacters(), api.getAllWikiPages()])
+	const entities = characters.concat(pages)
 	// characters.forEach(character => {
 	// 	console.log(character.name, character.connections.map(node => node.link))
 	// })
-    
-	const pages = await api.getAllWikiPages()
-	log(pages)
-	// console.log(characters)
+	log(entities)
 }
 
 init()
