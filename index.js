@@ -5,6 +5,7 @@ async function init () {
 	const api = await obsidianportal(username, password)
 	api.setSite(site)
 	const characters = await api.getAllCharacters()
+	console.log(characters)
 }
 
 init()
