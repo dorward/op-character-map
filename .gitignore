@@ -5,3 +5,5 @@ node_modules
 /data.json
 /graph.dot.png
 /graph.dot
+/data.dot.png
+/data.dot
