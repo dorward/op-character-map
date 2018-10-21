@@ -5,7 +5,10 @@ async function init () {
 	const api = await obsidianportal(username, password)
 	api.setSite(site)
 	const characters = await api.getAllCharacters()
-	console.log(characters)
+	characters.forEach(character => {
+		console.log(character.name, character.linkedNodes)
+	})
+	// console.log(characters)
 }
 
 init()
