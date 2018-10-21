@@ -9,13 +9,12 @@ async function init () {
 	const api = await obsidianportal(username, password)
 	api.setSite(site)
 	const [characters, pages] = await Promise.all([api.getAllCharacters(), api.getAllWikiPages()])
-	const entities = characters.concat(pages)
+	const entities = characters.concat(pages.filter(page => !page.link.match(/main-page$/)))
 	await getImages(entities)
 	await run('./resize.sh')
 	const dot = graph(entities)
 	await write('data.dot', dot)
 	await run('dot -T png -O data.dot')
-
 }
 
 async function run(command) {
