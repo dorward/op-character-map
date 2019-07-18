@@ -11,3 +11,4 @@ node_modules
 /images/*.jpeg
 /images/*.png
 *~
+.DS_Store
