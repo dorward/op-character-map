@@ -1,5 +1,15 @@
 {
-  "presets": ["es2015"],
+  "presets": [
+    ["@babel/preset-env", {
+      "useBuiltIns": "usage",
+      "corejs": 3, // or 2,
+      "targets": {
+        "node": "10.16.0"
+      },
+    }]
+    ],
   "sourceMaps": "inline",
-  "plugins": ["source-map-support"]
+  "plugins": [
+    "source-map-support"
+  ]
 }
