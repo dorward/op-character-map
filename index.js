@@ -9,8 +9,13 @@ import commander from 'commander'
 async function init () {
 	const api = await obsidianportal(username, password)
 	api.setSite(site)
-	const [characters, pages] = await Promise.all([api.getAllCharacters(), api.getAllWikiPages()])
-	const entities = characters.concat(pages.filter(page => !page.link.match(/main-page$/)))
+	const [characters, pages, items] = 
+		await Promise.all([
+			api.getAllCharacters(), 
+			api.getAllWikiPages(), 
+			api.getAllItems()
+		])
+	const entities = characters.concat(items).concat(pages.filter(page => !page.link.match(/main-page$/)))
 	await getImages(entities)
 	await run('./resize.sh')
 	let options = 'all'
